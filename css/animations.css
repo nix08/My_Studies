@@ -1,0 +1,438 @@
+/* ═══════════════════════════════════════════════════════════
+   MY STUDIES — Animations & Transitions
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── PAGE LOAD FADE-IN ────────────────────────────────────── */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+body {
+  animation: pageEnter 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* ── SMOOTH GLOBAL TRANSITIONS ────────────────────────────── */
+a, button, input, select, textarea,
+.btn, .nav-link, .college-card, .course-card,
+.why-card, .filter-btn, .social-link, .info-icon,
+.city-tab, .stream-tab, .stat-card, .partner-logo,
+.testimonial-card, .footer a {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── SECTION FADE-IN FROM LEFT ────────────────────────────── */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-36px);
+  transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── SECTION FADE-IN FROM RIGHT ───────────────────────────── */
+.reveal-right {
+  opacity: 0;
+  transform: translateX(36px);
+  transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── BUTTON PRESS ─────────────────────────────────────────── */
+.btn:active {
+  transform: scale(0.97);
+  transition: transform 0.12s ease;
+}
+
+/* ── NAV CTA SMOOTH LIFT ──────────────────────────────────── */
+.nav-cta {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              opacity 0.3s ease !important;
+}
+
+/* ── FORM FIELD FOCUS GLOW ────────────────────────────────── */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  transition: border-color 0.3s ease,
+              box-shadow 0.3s ease,
+              background 0.3s ease;
+}
+
+/* ── SUCCESS MESSAGE FADE ─────────────────────────────────── */
+@keyframes successPop {
+  0%   { opacity: 0; transform: scale(0.88) translateY(8px); }
+  60%  { opacity: 1; transform: scale(1.03) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.form-success {
+  animation: successPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ── FILTER TAB ACTIVE SLIDE ──────────────────────────────── */
+.filter-btn {
+  transition: background 0.3s ease,
+              color 0.3s ease,
+              box-shadow 0.3s ease,
+              transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.filter-btn:hover  { transform: translateY(-2px); }
+.filter-btn.active { transform: translateY(0); }
+
+/* ── CITY / STREAM TAB SWITCH ─────────────────────────────── */
+.city-panel,
+.stream-panel {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.city-panel:not(.active),
+.stream-panel:not(.active) {
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+}
+.city-panel.active,
+.stream-panel.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── CARD HOVER LIFT ──────────────────────────────────────── */
+.college-card:hover,
+.course-card:hover,
+.why-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 56px rgba(0,0,0,0.14);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s ease;
+}
+
+/* ── SOCIAL LINK SCALE ────────────────────────────────────── */
+.social-link {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.3s ease,
+              color 0.3s ease;
+}
+.social-link:hover { transform: scale(1.18) translateY(-2px); }
+
+/* ── INFO ICON POP ────────────────────────────────────────── */
+.info-icon {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
+}
+.info-item:hover .info-icon { transform: scale(1.1) rotate(-5deg); }
+
+/* ── PARTNER LOGO SCALE ───────────────────────────────────── */
+.partner-logo {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.35s ease;
+}
+.partner-logo:hover { transform: scale(1.08); opacity: 1 !important; }
+
+/* ── SECTION HEADER REVEAL ────────────────────────────────── */
+.section-header.reveal {
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── HERO VISUAL FLOAT ────────────────────────────────────── */
+.hero-visual {
+  animation: floatCard 4s ease-in-out infinite;
+}
+
+/* ── KEYFRAMES ────────────────────────────────────────────── */
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, -40px) scale(1.05); }
+  66%       { transform: translate(-20px, 20px) scale(0.97); }
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% center; }
+  50%  { background-position: 200% center; }
+  100% { background-position: 0% center; }
+}
+
+@keyframes badgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,0,0); }
+  50%       { box-shadow: 0 0 0 8px rgba(255,107,0,0.08); }
+}
+
+@keyframes scrollHint {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+  50%       { transform: translateX(-50%) translateY(10px); opacity: 0.5; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes spinOnce {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes particleFall {
+  0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes dotBounce {
+  0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+  40%            { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ── REVEAL ON SCROLL ─────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* stagger children inside a parent that's revealed */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-stagger.visible > *:nth-child(1) { transition-delay: 0s;    opacity: 1; transform: none; }
+.reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.1s;  opacity: 1; transform: none; }
+.reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.2s;  opacity: 1; transform: none; }
+.reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.3s;  opacity: 1; transform: none; }
+.reveal-stagger.visible > *:nth-child(5) { transition-delay: 0.4s;  opacity: 1; transform: none; }
+.reveal-stagger.visible > *:nth-child(6) { transition-delay: 0.5s;  opacity: 1; transform: none; }
+
+/* ── HERO ENTRY ANIMATIONS ────────────────────────────────── */
+.hero-content.reveal.visible {
+  animation: fadeInUp 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.hero-badge    { animation-delay: 0.1s; }
+.hero-title    { animation-delay: 0.2s; }
+.hero-subtitle { animation-delay: 0.3s; }
+.hero-actions  { animation-delay: 0.4s; }
+.hero-trust    { animation-delay: 0.5s; }
+
+/* ── CARD HOVER GLINT ─────────────────────────────────────── */
+.college-card,
+.course-card,
+.why-card {
+  --glint: 0;
+}
+
+/* ── PARTICLES ────────────────────────────────────────────── */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particleFall linear infinite;
+  opacity: 0.4;
+}
+
+/* ── FILTER TRANSITION ────────────────────────────────────── */
+.college-card,
+.course-card {
+  animation: scaleIn 0.4s ease both;
+}
+
+.college-card.hiding,
+.course-card.hiding {
+  animation: none;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* ── LOADING SPINNER ──────────────────────────────────────── */
+.fa-spinner {
+  animation: spinOnce 1s linear infinite;
+}
+
+/* ── GOLD SHIMMER BUTTON ──────────────────────────────────── */
+.btn-gold {
+  background-size: 200% auto;
+}
+
+.btn-gold:hover {
+  background-image: linear-gradient(
+    135deg,
+    var(--gold) 0%,
+    var(--gold-light) 50%,
+    var(--gold) 100%
+  );
+  animation: shimmer 1.5s linear infinite;
+}
+
+/* ── STAT NUMBER COUNT ────────────────────────────────────── */
+.stat-number {
+  animation: countUp 0.5s ease both;
+}
+
+/* ── NAV LINK UNDERLINE SLIDE ─────────────────────────────── */
+.nav-link:not(.nav-cta) {
+  position: relative;
+}
+
+.nav-link:not(.nav-cta)::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 1px;
+  transform: scaleX(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:not(.nav-cta):hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* ── SOCIAL LINK BOUNCE ───────────────────────────────────── */
+.social-link:hover i {
+  animation: dotBounce 0.4s ease;
+}
+
+/* ── FORM INPUT FOCUS RING ────────────────────────────────── */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  position: relative;
+}
+
+/* ── CARD ENTRANCE DELAYS ─────────────────────────────────── */
+.college-grid .college-card:nth-child(1),
+.course-grid .course-card:nth-child(1) { animation-delay: 0s; }
+
+.college-grid .college-card:nth-child(2),
+.course-grid .course-card:nth-child(2) { animation-delay: 0.05s; }
+
+.college-grid .college-card:nth-child(3),
+.course-grid .course-card:nth-child(3) { animation-delay: 0.10s; }
+
+.college-grid .college-card:nth-child(4),
+.course-grid .course-card:nth-child(4) { animation-delay: 0.15s; }
+
+.college-grid .college-card:nth-child(5),
+.course-grid .course-card:nth-child(5) { animation-delay: 0.20s; }
+
+.college-grid .college-card:nth-child(6),
+.course-grid .course-card:nth-child(6) { animation-delay: 0.25s; }
+
+.college-grid .college-card:nth-child(n+7),
+.course-grid .course-card:nth-child(n+7)  { animation-delay: 0.30s; }
+
+/* ── SCROLL PROGRESS BAR ──────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  z-index: 9999;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px rgba(255,107,0,0.6);
+}
+
+/* ── SECTION DIVIDER ──────────────────────────────────────── */
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 2px;
+  margin: 16px auto 0;
+}
+
+/* ── WHY CARD ICON RING PULSE ─────────────────────────────── */
+@keyframes ringPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,107,0,0.35); }
+  70%  { box-shadow: 0 0 0 14px rgba(255,107,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,107,0,0); }
+}
+
+.why-card:hover .why-icon {
+  animation: ringPulse 1s ease-out;
+}
+
+/* ── TESTIMONIAL FADE IN ──────────────────────────────────── */
+@keyframes testimonialIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.testimonial-card.active-slide {
+  animation: testimonialIn 0.5s ease both;
+}

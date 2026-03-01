@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(node --version:*)",
+      "Bash(npx:*)",
+      "Bash(curl:*)",
+      "Bash(taskkill:*)",
+      "Bash(ping:*)",
+      "Bash(netstat:*)",
+      "Bash(cmd /c:*)",
+      "Bash(powershell -Command \"Stop-Process -Id 1608 -Force\")",
+      "Bash(powershell -Command \"Get-Process | Where-Object { $_Name -eq ''node'' } | Stop-Process -Force\")",
+      "Bash(python3:*)"
+    ]
+  }
+}

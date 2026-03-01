@@ -1,0 +1,321 @@
+/* ═══════════════════════════════════════════════════════════
+   MY STUDIES — Responsive Styles
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── LARGE DESKTOP (1400px+) ──────────────────────────────── */
+@media (min-width: 1400px) {
+  .container { max-width: 1320px; }
+
+  .hero-title { font-size: 4.8rem; }
+  .section-title { font-size: 3.2rem; }
+
+  .college-grid { grid-template-columns: repeat(3, 1fr); }
+  .course-grid  { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ── DESKTOP (1024px – 1399px) ────────────────────────────── */
+@media (max-width: 1399px) {
+  .course-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── TABLET LANDSCAPE (900px – 1023px) ───────────────────── */
+@media (max-width: 1023px) {
+  .section { padding: 80px 0; }
+
+  /* Navbar */
+  .hamburger { display: flex; }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 90px 28px 40px;
+    border-left: 1px solid rgba(0,0,0,0.08);
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    box-shadow: -8px 0 30px rgba(0,0,0,0.10);
+  }
+
+  .nav-links.open { right: 0; }
+
+  .nav-link {
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px 16px;
+    border-radius: 8px;
+  }
+
+  .nav-cta {
+    margin-top: 12px;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Hero split — stack on tablet */
+  .hero-split {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-top: 120px;
+    padding-bottom: 80px;
+    text-align: center;
+    min-height: auto;
+  }
+
+  .hero-text {
+    align-items: center;
+  }
+
+  .hero-subtitle { margin-left: auto; margin-right: auto; }
+
+  .hero-search { max-width: 100%; }
+
+  .hero-image { display: none; }
+
+  .hero-title { font-size: 3rem; }
+
+  .trust-item { padding: 0 16px; }
+  .trust-num { font-size: 1.5rem; }
+
+  /* Companies */
+  .companies-logos { gap: 28px; }
+  .company-logo { height: 22px; }
+
+  /* Stats */
+  .stats-container { justify-content: center; gap: 24px; }
+  .stat-item { min-width: 140px; }
+
+  /* Colleges & Courses */
+  .college-grid { grid-template-columns: repeat(2, 1fr); }
+  .course-grid  { grid-template-columns: repeat(2, 1fr); }
+
+  /* Services */
+  .services-intro { grid-template-columns: 1fr; gap: 36px; }
+  .services-grid  { grid-template-columns: repeat(2, 1fr); }
+  .services-banner { flex-direction: column; text-align: center; padding: 32px 28px; }
+  .banner-check-list { justify-content: center; }
+
+  /* Why */
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Contact */
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .footer-brand { grid-column: 1 / -1; }
+}
+
+/* ── TABLET PORTRAIT (600px – 899px) ─────────────────────── */
+@media (max-width: 899px) {
+  .section { padding: 64px 0; }
+
+  /* Hero */
+  .hero-title { font-size: 2.6rem; }
+
+  .hero-trust {
+    padding: 16px 20px;
+    gap: 0;
+  }
+
+  .trust-item { padding: 0 12px; }
+  .trust-num { font-size: 1.3rem; }
+
+  .hero-actions { gap: 12px; }
+  .btn { padding: 12px 22px; font-size: 0.9rem; }
+
+  /* Filter tabs */
+  .filter-tabs { gap: 8px; }
+  .filter-btn { font-size: 0.82rem; padding: 7px 14px; }
+
+  /* Section */
+  .section-title { font-size: 1.9rem; }
+  .section-header { margin-bottom: 40px; }
+
+  /* Stats */
+  .stats-container { gap: 16px; }
+  .stat-item { min-width: 120px; }
+  .stat-number { font-size: 1.8rem; }
+  .stat-icon { font-size: 1.5rem; width: 48px; height: 48px; }
+
+  /* Testimonials */
+  .testimonial-card { padding: 36px 28px; }
+  .testimonial-text { font-size: 0.95rem; }
+
+  /* Contact form */
+  .contact-form { padding: 28px; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* ── MOBILE (max 599px) ───────────────────────────────────── */
+@media (max-width: 599px) {
+  html { font-size: 15px; }
+  .section { padding: 52px 0; }
+  .container { padding: 0 16px; }
+
+  /* Navbar */
+  .nav-container { padding: 0 16px; }
+
+  /* Hero */
+  .hero-split { padding-top: 100px; padding-bottom: 60px; }
+  .hero-title { font-size: 2rem; letter-spacing: -0.01em; }
+  .hero-subtitle { font-size: 0.92rem; }
+  .hero-badge { font-size: 0.75rem; padding: 6px 14px; }
+
+  .hero-checks li { font-size: 0.82rem; }
+
+  .hero-search { flex-wrap: wrap; border-radius: var(--radius-md); padding: 12px 16px; }
+  .hero-search input { width: 100%; }
+  .hero-search .btn { width: 100%; justify-content: center; border-radius: var(--radius-sm); }
+
+  .hero-trust {
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+  }
+
+  .trust-divider {
+    width: 40px;
+    height: 1px;
+  }
+
+  /* Companies */
+  .companies-logos { gap: 20px; }
+  .company-logo { height: 18px; }
+
+  /* Stats */
+  .stats-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .stat-item { justify-content: center; width: 100%; }
+
+  /* Section header */
+  .section-title { font-size: 1.7rem; }
+  .section-subtitle { font-size: 0.9rem; }
+
+  /* Filter tabs */
+  .filter-tabs {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+  .filter-tabs::-webkit-scrollbar { display: none; }
+  .filter-btn { flex-shrink: 0; font-size: 0.8rem; }
+
+  /* College & Course grids */
+  .college-grid,
+  .course-grid,
+  .why-grid { grid-template-columns: 1fr; }
+
+  /* Services mobile */
+  .services-grid { grid-template-columns: 1fr; }
+  .services-banner { padding: 24px 16px; }
+  .banner-text h3 { font-size: 1.3rem; }
+  .services-intro-text .section-header { text-align: center; }
+  .services-tagline { font-size: 0.78rem; text-align: center; justify-content: center; flex-wrap: wrap; }
+
+  /* Testimonials */
+  .testimonial-card {
+    padding: 28px 20px;
+  }
+
+  .testimonial-text { font-size: 0.9rem; }
+
+  .testimonial-author { flex-wrap: wrap; gap: 12px; }
+  .testimonial-stars { margin-left: 0; width: 100%; }
+
+  /* Contact */
+  .contact-form { padding: 22px 18px; }
+
+  .contact-info h3 { font-size: 1.25rem; }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footer-brand { grid-column: auto; }
+
+  .footer-bottom .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .footer-bottom-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+
+  /* Back to top */
+  .back-to-top { bottom: 20px; right: 20px; width: 42px; height: 42px; font-size: 0.9rem; }
+}
+
+/* ── VERY SMALL MOBILE (max 380px) ────────────────────────── */
+@media (max-width: 380px) {
+  .hero-title { font-size: 1.8rem; }
+  .btn { font-size: 0.85rem; padding: 11px 18px; }
+}
+
+/* ── PRINT ────────────────────────────────────────────────── */
+@media print {
+  .navbar,
+  .hero-scroll-hint,
+  .back-to-top,
+  .filter-tabs,
+  .carousel-controls,
+  .social-links { display: none !important; }
+
+  body { background: white; color: black; }
+  .section { padding: 30px 0; }
+}
+
+/* ── COLLEGES SECTION RESPONSIVE ─────────────────────────── */
+@media (max-width: 767px) {
+  .city-tabs { gap: 12px; }
+  .city-tab { min-width: 100%; max-width: 100%; padding: 16px 20px; }
+
+  .stream-tabs { gap: 8px; padding: 12px 14px; }
+  .stream-tab { padding: 8px 14px; font-size: 0.8rem; }
+
+  .colleges-grid { grid-template-columns: 1fr; }
+
+  .colleges-cta { padding: 28px 24px; }
+  .cta-inner { flex-direction: column; align-items: flex-start; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .city-tab { min-width: 140px; padding: 16px 20px; }
+  .colleges-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── REDUCED MOTION ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal { opacity: 1; transform: none; }
+  .orb { animation: none; }
+  .gradient-text { animation: none; }
+  .hero-scroll-hint { animation: none; }
+}
