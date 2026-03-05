@@ -12,7 +12,11 @@
       "Bash(cmd /c:*)",
       "Bash(powershell -Command \"Stop-Process -Id 1608 -Force\")",
       "Bash(powershell -Command \"Get-Process | Where-Object { $_Name -eq ''node'' } | Stop-Process -Force\")",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(node \"C:/Program Files/nodejs/node_modules/npm/bin/npx-cli.js\" serve --version)",
+      "Bash(findstr :3000)",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(powershell -Command \"\\(Get-Item ''D:/Projects/EdConsult/assets/images/banner/student-new.jpg''\\).Length\")"
     ]
   }
 }

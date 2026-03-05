@@ -440,6 +440,12 @@ input, textarea, select { font-family: inherit; }
   animation-delay: 0s;
 }
 
+.hero-float-card.card-mid-left {
+  top: 37%;
+  left: -8%;
+  animation-delay: 1s;
+}
+
 .hero-float-card.card-bottom-right {
   bottom: 12%;
   right: -8%;
