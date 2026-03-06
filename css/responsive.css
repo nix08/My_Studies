@@ -103,6 +103,13 @@
   .services-banner { flex-direction: column; text-align: center; padding: 32px 28px; }
   .banner-check-list { justify-content: center; }
 
+  /* Admission Procedure */
+  .admission-steps { grid-template-columns: repeat(2, 1fr); }
+  .admission-steps::before { display: none; }
+
+  /* Course Categories */
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+
   /* Why */
   .why-grid { grid-template-columns: repeat(2, 1fr); }
 
@@ -233,6 +240,12 @@
   .college-grid,
   .course-grid,
   .why-grid { grid-template-columns: 1fr; }
+
+  /* Course Categories */
+  .categories-grid { grid-template-columns: 1fr; }
+
+  /* Admission Procedure */
+  .admission-steps { grid-template-columns: 1fr; gap: 24px; }
 
   /* Services mobile */
   .services-grid { grid-template-columns: 1fr; }

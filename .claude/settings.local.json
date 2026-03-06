@@ -19,7 +19,9 @@
       "Bash(powershell -Command \"\\(Get-Item ''D:/Projects/EdConsult/assets/images/banner/student-new.jpg''\\).Length\")",
       "Bash(git add index.html css/style.css assets/images/logo.png assets/images/banner/student-new.jpg)",
       "Bash(git commit:*)",
-      "Bash(git push origin main)"
+      "Bash(git push origin main)",
+      "Bash(\"C:/Program Files/nodejs/node.exe\" \"C:/Program Files/nodejs/node_modules/npm/bin/npx-cli.js\" serve -l 3000 .)",
+      "WebFetch(domain:zignature.in)"
     ]
   }
 }
