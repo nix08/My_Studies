@@ -435,20 +435,20 @@ input, textarea, select { font-family: inherit; }
 }
 
 .hero-float-card.card-top-left {
-  top: 10%;
-  left: -10%;
+  top: -5%;
+  left: 28%;
   animation-delay: 0s;
 }
 
 .hero-float-card.card-mid-left {
-  top: 37%;
-  left: -8%;
+  top: 42%;
+  left: -12%;
   animation-delay: 1s;
 }
 
 .hero-float-card.card-bottom-right {
-  bottom: 12%;
-  right: -8%;
+  top: 42%;
+  right: -12%;
   animation-delay: 2s;
 }
 
@@ -1836,7 +1836,7 @@ input, textarea, select { font-family: inherit; }
   font-family: var(--font-heading);
   font-size: 1.6rem;
   font-weight: 700;
-  color: var(--white);
+  color: #ffffff;
   margin-bottom: 6px;
 }
 
@@ -2186,15 +2186,15 @@ input, textarea, select { font-family: inherit; }
 
 .category-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
 
-.cat-blue   { background: #BDD7FF; }
-.cat-yellow { background: #FFE4A0; }
-.cat-green  { background: #B8F0C8; }
-.cat-lime   { background: #CEFFA0; }
-.cat-purple { background: #D8C8FF; }
-.cat-cyan   { background: #B0F4F4; }
-.cat-pink   { background: #FFB8C8; }
-.cat-indigo { background: #C8B0FF; }
-.cat-lemon  { background: #FFFFA0; }
+.cat-blue,
+.cat-yellow,
+.cat-green,
+.cat-lime,
+.cat-purple,
+.cat-cyan,
+.cat-pink,
+.cat-indigo,
+.cat-lemon  { background: #dce6f5; color: #25448b; }
 
 /* ── ADMISSION PROCEDURE ──────────────────────────────────── */
 .admission-section { background: var(--navy-deep); }
