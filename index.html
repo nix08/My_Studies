@@ -41,7 +41,8 @@
         <li><a href="#colleges" class="nav-link">Colleges</a></li>
         <li><a href="#why-us" class="nav-link">About</a></li>
         <li><a href="#admission" class="nav-link">Admissions</a></li>
-        <li><a href="#contact" class="nav-link nav-cta">Free Counseling</a></li>
+        <li><a href="#scholarships" class="nav-link">Scholarships</a></li>
+        <li><a href="#contact" class="nav-link nav-cta">Apply Now</a></li>
       </ul>
 
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -787,14 +788,12 @@
 
         <div class="stream-panel active" id="slm-arts">
           <div class="colleges-grid">
-            <div class="college-item"><span class="col-num">01</span><span class="col-icon-wrap"><i class="fas fa-university"></i></span><span class="col-name">Government Arts College (Autonomous), Salem</span></div>
           </div>
         </div>
 
         <div class="stream-panel" id="slm-eng">
           <div class="colleges-grid">
             <div class="college-item"><span class="col-num">01</span><span class="col-icon-wrap"><i class="fas fa-university"></i></span><span class="col-name">Sona College of Technology</span></div>
-            <div class="college-item"><span class="col-num">02</span><span class="col-icon-wrap"><i class="fas fa-university"></i></span><span class="col-name">Government College of Engineering, Salem</span></div>
             <div class="college-item"><span class="col-num">03</span><span class="col-icon-wrap"><i class="fas fa-university"></i></span><span class="col-name">Knowledge Institute of Technology (KIOT)</span></div>
             <div class="college-item"><span class="col-num">04</span><span class="col-icon-wrap"><i class="fas fa-university"></i></span><span class="col-name">Indian Institute of Handloom Technology (IIHT)</span></div>
           </div>
@@ -1317,18 +1316,187 @@
   </section>
 
   <!-- ═══════════════════════════════════════════
-       CONTACT SECTION
+       SCHOLARSHIPS SECTION
   ═══════════════════════════════════════════ -->
-  <section class="section contact-section" id="contact">
+  <section class="section scholarship-section" id="scholarships">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">Get In Touch</span>
+        <span class="section-tag">Scholarships</span>
+        <h2 class="section-title">Apply for <span class="gold">Scholarship</span></h2>
+        <p class="section-subtitle">Unlock financial support for your education. Our team helps you identify, apply, and secure scholarships worth crores — completely free of charge.</p>
+      </div>
+
+      <div class="scholarship-wrapper">
+        <!-- Left: Info + Image -->
+        <div class="scholarship-info reveal">
+          <div class="scholarship-img-wrap">
+            <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=520&q=80" alt="Students applying for scholarship" class="scholarship-img" />
+            <div class="scholarship-badge">
+              <i class="fas fa-medal"></i>
+              <span>&#x20B9;1 Cr+ Scholarships Disbursed</span>
+            </div>
+          </div>
+          <div class="scholarship-highlights">
+            <div class="sch-highlight">
+              <div class="sch-hi-icon"><i class="fas fa-check-circle"></i></div>
+              <span>Merit-based scholarships for top performers</span>
+            </div>
+            <div class="sch-highlight">
+              <div class="sch-hi-icon"><i class="fas fa-check-circle"></i></div>
+              <span>Income-based fee waivers &amp; reductions</span>
+            </div>
+            <div class="sch-highlight">
+              <div class="sch-hi-icon"><i class="fas fa-check-circle"></i></div>
+              <span>Government &amp; private scholarship guidance</span>
+            </div>
+            <div class="sch-highlight">
+              <div class="sch-hi-icon"><i class="fas fa-check-circle"></i></div>
+              <span>Full application &amp; documentation support</span>
+            </div>
+            <div class="sch-highlight">
+              <div class="sch-hi-icon"><i class="fas fa-check-circle"></i></div>
+              <span>Dedicated scholarship counselor assigned</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <form class="scholarship-form reveal" id="scholarshipForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="sch-name">Full Name *</label>
+              <input type="text" id="sch-name" name="sch_name" placeholder="Rahul Sharma" required />
+            </div>
+            <div class="form-group">
+              <label for="sch-phone">Phone Number *</label>
+              <input type="tel" id="sch-phone" name="sch_phone" placeholder="+91 98765 43210" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="sch-email">Email Address *</label>
+              <input type="email" id="sch-email" name="sch_email" placeholder="rahul@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="sch-dob">Date of Birth</label>
+              <input type="date" id="sch-dob" name="sch_dob" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="sch-education">Current Education Level *</label>
+              <select id="sch-education" name="sch_education" required>
+                <option value="">Select level</option>
+                <option>10th Pass</option>
+                <option>12th Pass</option>
+                <option>Pursuing UG</option>
+                <option>UG Graduate</option>
+                <option>Pursuing PG</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="sch-marks">Percentage / CGPA *</label>
+              <input type="text" id="sch-marks" name="sch_marks" placeholder="e.g. 85% or 8.5 CGPA" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="sch-course">Course Applying For *</label>
+              <select id="sch-course" name="sch_course" required>
+                <option value="">Select a course</option>
+                <option>B.Tech / B.E.</option>
+                <option>MBBS / BDS</option>
+                <option>MBA / PGDM</option>
+                <option>LLB / LLM</option>
+                <option>CA / CMA / CS</option>
+                <option>Data Science &amp; ML</option>
+                <option>Full Stack Development</option>
+                <option>Cybersecurity</option>
+                <option>Cloud Computing</option>
+                <option>UI/UX Design</option>
+                <option>Digital Marketing</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="sch-state">State</label>
+              <select id="sch-state" name="sch_state">
+                <option value="">Select state</option>
+                <option>Kerala</option>
+                <option>Tamil Nadu</option>
+                <option>Karnataka</option>
+                <option>Maharashtra</option>
+                <option>Delhi / NCR</option>
+                <option>Andhra Pradesh</option>
+                <option>Telangana</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="sch-address">Address</label>
+            <textarea id="sch-address" name="sch_address" rows="2" placeholder="House No., Street, City, District, PIN Code..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="sch-message">Why Do You Deserve This Scholarship?</label>
+            <textarea id="sch-message" name="sch_message" rows="3" placeholder="Tell us about your achievements, goals, and financial needs..."></textarea>
+          </div>
+
+          <!-- File Uploads -->
+          <div class="form-group">
+            <label>Upload SSLC Certificate</label>
+            <div class="file-upload-zone" id="sslcZone">
+              <input type="file" id="sch-sslc" name="sch_sslc" accept=".pdf,.jpg,.jpeg,.png" class="file-upload-input" />
+              <div class="file-upload-content">
+                <i class="fas fa-folder-open file-upload-icon"></i>
+                <p>Drag &amp; drop a file or <span class="file-browse-link">browse</span></p>
+                <span class="file-upload-hint">Max file size is 10 MB</span>
+              </div>
+              <div class="file-upload-name" id="sslcFileName"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Upload Plus Two Certificate</label>
+            <div class="file-upload-zone" id="plusTwoZone">
+              <input type="file" id="sch-plustwo" name="sch_plustwo" accept=".pdf,.jpg,.jpeg,.png" class="file-upload-input" />
+              <div class="file-upload-content">
+                <i class="fas fa-folder-open file-upload-icon"></i>
+                <p>Drag &amp; drop a file or <span class="file-browse-link">browse</span></p>
+                <span class="file-upload-hint">Max file size is 10 MB</span>
+              </div>
+              <div class="file-upload-name" id="plusTwoFileName"></div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-gold btn-full" id="schSubmitBtn">
+            <span class="btn-text">Apply for Scholarship <i class="fas fa-paper-plane"></i></span>
+            <span class="btn-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Submitting...</span>
+          </button>
+          <div class="form-success" id="schFormSuccess" style="display:none;">
+            <i class="fas fa-check-circle"></i> Application received! Our team will contact you within 24 hours.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       APPLY NOW / START YOUR JOURNEY
+  ═══════════════════════════════════════════ -->
+  <section class="section apply-section" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Get Started</span>
         <h2 class="section-title">Start Your <span class="gold">Journey Today</span></h2>
         <p class="section-subtitle">Fill in your details and our expert counselor will reach out within 24 hours — free of charge.</p>
       </div>
 
-      <div class="contact-wrapper">
+      <div class="apply-wrapper">
+        <!-- Left: Info + Image -->
         <div class="contact-info reveal">
+          <div class="apply-img-wrap">
+            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=480&q=80" alt="Student applying for admission" class="apply-info-img" />
+          </div>
           <h3>We're Here to Help</h3>
           <div class="info-item">
             <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
@@ -1348,7 +1516,7 @@
             <div class="info-icon"><i class="fas fa-clock"></i></div>
             <div>
               <strong>Office Hours</strong>
-              <p>Mon–Sat: 9:00 AM – 7:00 PM</p>
+              <p>Mon&#x2013;Sat: 9:00 AM &#x2013; 7:00 PM</p>
             </div>
           </div>
           <div class="social-links">
@@ -1357,35 +1525,56 @@
           </div>
         </div>
 
-        <form class="contact-form reveal" id="contactForm" novalidate>
+        <!-- Right: Application Form -->
+        <form class="contact-form reveal" id="applyForm" novalidate>
           <div class="form-row">
             <div class="form-group">
-              <label for="name">Full Name *</label>
-              <input type="text" id="name" name="name" placeholder="Rahul Sharma" required />
-              <span class="form-error" id="nameError"></span>
+              <label for="apply-name">Full Name *</label>
+              <input type="text" id="apply-name" name="apply_name" placeholder="Rahul Sharma" required />
             </div>
             <div class="form-group">
-              <label for="phone">Phone Number *</label>
-              <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required />
-              <span class="form-error" id="phoneError"></span>
+              <label for="apply-phone">Phone Number *</label>
+              <input type="tel" id="apply-phone" name="apply_phone" placeholder="+91 98765 43210" required />
             </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" placeholder="rahul@example.com" required />
-            <span class="form-error" id="emailError"></span>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="course">Course Interest</label>
-              <select id="course" name="course">
+              <label for="apply-email">Email Address *</label>
+              <input type="email" id="apply-email" name="apply_email" placeholder="rahul@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="apply-dob">Date of Birth</label>
+              <input type="date" id="apply-dob" name="apply_dob" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="apply-education">Current Education Level *</label>
+              <select id="apply-education" name="apply_education" required>
+                <option value="">Select level</option>
+                <option>10th Pass</option>
+                <option>12th Pass</option>
+                <option>Pursuing UG</option>
+                <option>UG Graduate</option>
+                <option>Pursuing PG</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="apply-marks">Percentage / CGPA</label>
+              <input type="text" id="apply-marks" name="apply_marks" placeholder="e.g. 85% or 8.5 CGPA" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="apply-course">Course Interested In *</label>
+              <select id="apply-course" name="apply_course" required>
                 <option value="">Select a course</option>
                 <option>B.Tech / B.E.</option>
                 <option>MBBS / BDS</option>
                 <option>MBA / PGDM</option>
                 <option>LLB / LLM</option>
                 <option>CA / CMA / CS</option>
-                <option>Data Science & ML</option>
+                <option>Data Science &amp; ML</option>
                 <option>Full Stack Development</option>
                 <option>Cybersecurity</option>
                 <option>Cloud Computing</option>
@@ -1396,27 +1585,52 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="budget">Budget Range</label>
-              <select id="budget" name="budget">
+              <label for="apply-location">Preferred Location</label>
+              <select id="apply-location" name="apply_location">
+                <option value="">Select location</option>
+                <option>Kerala</option>
+                <option>Tamil Nadu</option>
+                <option>Karnataka</option>
+                <option>Maharashtra</option>
+                <option>Delhi / NCR</option>
+                <option>Andhra Pradesh</option>
+                <option>Telangana</option>
+                <option>Any / Open</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="apply-budget">Budget Range</label>
+              <select id="apply-budget" name="apply_budget">
                 <option value="">Select budget</option>
-                <option>Under ₹1 Lakh/year</option>
-                <option>₹1–3 Lakh/year</option>
-                <option>₹3–6 Lakh/year</option>
-                <option>₹6–10 Lakh/year</option>
-                <option>Above ₹10 Lakh/year</option>
+                <option>Under &#x20B9;1 Lakh/year</option>
+                <option>&#x20B9;1&#x2013;3 Lakh/year</option>
+                <option>&#x20B9;3&#x2013;6 Lakh/year</option>
+                <option>&#x20B9;6&#x2013;10 Lakh/year</option>
+                <option>Above &#x20B9;10 Lakh/year</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="apply-hostel">Hostel Required?</label>
+              <select id="apply-hostel" name="apply_hostel">
+                <option value="">Select option</option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Maybe</option>
               </select>
             </div>
           </div>
           <div class="form-group">
-            <label for="message">Tell Us About Yourself</label>
-            <textarea id="message" name="message" rows="4" placeholder="Your academic background, goals, or any specific questions..."></textarea>
+            <label for="apply-message">Tell Us About Yourself</label>
+            <textarea id="apply-message" name="apply_message" rows="3" placeholder="Your academic background, goals, or any specific questions..."></textarea>
           </div>
-          <button type="submit" class="btn btn-gold btn-full" id="submitBtn">
-            <span class="btn-text">Request Free Counseling <i class="fas fa-paper-plane"></i></span>
+          <button type="submit" class="btn btn-gold btn-full" id="applySubmitBtn">
+            <span class="btn-text">Submit Application <i class="fas fa-paper-plane"></i></span>
             <span class="btn-loading" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
           </button>
-          <div class="form-success" id="formSuccess" style="display:none;">
-            <i class="fas fa-check-circle"></i> Thank you! We'll reach out within 24 hours.
+          <div class="form-success" id="applyFormSuccess" style="display:none;">
+            <i class="fas fa-check-circle"></i> Application submitted! We'll reach out within 24 hours.
           </div>
         </form>
       </div>
@@ -1449,7 +1663,8 @@
             <li><a href="#colleges">Partner Colleges</a></li>
             <li><a href="#why-us">About Us</a></li>
             <li><a href="#admission">Admissions</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#scholarships">Scholarships</a></li>
+            <li><a href="#contact">Apply Now</a></li>
           </ul>
         </div>
 

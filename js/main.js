@@ -432,3 +432,31 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
   }
 })();
+
+/* ── FILE UPLOAD ZONES ────────────────────────────────────── */
+(function initFileUploads() {
+  document.querySelectorAll('.file-upload-zone').forEach(zone => {
+    const input = zone.querySelector('.file-upload-input');
+    const nameEl = zone.querySelector('.file-upload-name');
+
+    input.addEventListener('change', () => {
+      if (input.files.length) nameEl.textContent = input.files[0].name;
+    });
+
+    zone.addEventListener('dragover', e => {
+      e.preventDefault();
+      zone.classList.add('drag-over');
+    });
+
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('drag-over');
+      if (e.dataTransfer.files.length) {
+        input.files = e.dataTransfer.files;
+        nameEl.textContent = e.dataTransfer.files[0].name;
+      }
+    });
+  });
+})();
