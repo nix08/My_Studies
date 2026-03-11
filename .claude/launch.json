@@ -4,8 +4,9 @@
     {
       "name": "Live Server (npx)",
       "runtimeExecutable": "C:/Program Files/nodejs/node.exe",
-      "runtimeArgs": ["C:/Program Files/nodejs/node_modules/npm/bin/npx-cli.js", "serve", "-l", "3000", "D:/Projects/EdConsult"],
-      "port": 3000
+      "runtimeArgs": ["C:/Program Files/nodejs/node_modules/npm/bin/npx-cli.js", "serve", "D:/Projects/EdConsult"],
+      "port": 3000,
+      "autoPort": true
     }
   ]
 }

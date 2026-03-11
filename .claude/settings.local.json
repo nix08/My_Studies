@@ -22,7 +22,9 @@
       "Bash(git push origin main)",
       "Bash(\"C:/Program Files/nodejs/node.exe\" \"C:/Program Files/nodejs/node_modules/npm/bin/npx-cli.js\" serve -l 3000 .)",
       "WebFetch(domain:zignature.in)",
-      "WebFetch(domain:images.unsplash.com)"
+      "WebFetch(domain:images.unsplash.com)",
+      "Bash(\"C:/Program Files/nodejs/node.exe\" \"C:/Program Files/nodejs/node_modules/npm/bin/npx-cli.js\" serve --version)",
+      "Bash(\"C:/Program Files/nodejs/node.exe\" \"C:/Program Files/nodejs/node_modules/npm/bin/npx-cli.js\" serve --help)"
     ]
   }
 }
