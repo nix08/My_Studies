@@ -1865,6 +1865,106 @@ input, textarea, select { font-family: inherit; }
   font-size: 0.8rem;
 }
 
+/* ── COURSES ACCORDION SECTION ───────────────────────────── */
+.courses-section { background: var(--navy-deep); }
+
+.courses-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.accordion-item {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition);
+}
+
+.accordion-item:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  background: var(--gold);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background var(--transition);
+  text-align: left;
+  gap: 12px;
+}
+
+.accordion-header:hover,
+.accordion-header.active {
+  background: var(--gold-light);
+}
+
+.accordion-cat-icon {
+  margin-right: 10px;
+  opacity: 0.9;
+}
+
+.accordion-icon {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+.accordion-header.active .accordion-icon {
+  transform: rotate(45deg);
+}
+
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding var(--transition);
+  background: var(--surface-2);
+}
+
+.accordion-body.open {
+  max-height: 600px;
+}
+
+.accordion-body-inner {
+  padding: 20px 24px;
+}
+
+.courses-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+}
+
+.course-pill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 8px 18px;
+  font-size: 0.88rem;
+  color: var(--off-white);
+  cursor: default;
+  transition: var(--transition);
+}
+
+.course-pill:hover {
+  background: var(--gold);
+  color: #fff;
+  border-color: var(--gold);
+  transform: translateY(-1px);
+}
+
 /* ── PARTNER COLLEGES SECTION ─────────────────────────────── */
 .colleges-section {
   background: var(--navy-deep);

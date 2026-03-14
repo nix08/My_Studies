@@ -238,119 +238,220 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 })();
 
-/* ── CONTACT FORM ─────────────────────────────────────────── */
-(function initContactForm() {
-  const form      = document.getElementById('contactForm');
-  const submitBtn = document.getElementById('submitBtn');
-  const success   = document.getElementById('formSuccess');
+/* ── GOOGLE SHEETS URL ────────────────────────────────────── */
+// 1. Set up the Apps Script (see js/sheets-script.gs for full instructions).
+// 2. Deploy it as a Web App (Execute as: Me, Who has access: Anyone).
+// 3. Replace the placeholder below with your deployed Web App URL.
+const SHEETS_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
 
+/* ── SHARED HELPERS ───────────────────────────────────────── */
+function readFileAsBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload  = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function setSubmitting(btn, isLoading) {
+  btn.querySelector('.btn-text').style.display    = isLoading ? 'none'        : 'inline-flex';
+  btn.querySelector('.btn-loading').style.display = isLoading ? 'inline-flex' : 'none';
+  btn.disabled = isLoading;
+}
+
+function showFormSuccess(el) {
+  el.style.display = 'flex';
+  setTimeout(() => { el.style.display = 'none'; }, 5000);
+}
+
+async function postToSheets(payload) {
+  try {
+    await fetch(SHEETS_URL, {
+      method:  'POST',
+      mode:    'no-cors', // required for Apps Script Web Apps
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    });
+  } catch (_) { /* no-cors responses always trigger catch — this is expected */ }
+}
+
+/* ── APPLY FORM (Start Your Journey Today) ────────────────── */
+(function initApplyForm() {
+  const form      = document.getElementById('applyForm');
+  const submitBtn = document.getElementById('applySubmitBtn');
+  const successEl = document.getElementById('applyFormSuccess');
   if (!form) return;
 
-  function showError(fieldId, message) {
-    const el = document.getElementById(fieldId + 'Error');
-    const input = document.getElementById(fieldId);
-    if (el) el.textContent = message;
-    if (input) input.style.borderColor = 'rgba(239,68,68,0.6)';
-  }
+  const phoneRe = /^[+]?[\d\s\-()]{7,15}$/;
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  function clearError(fieldId) {
-    const el = document.getElementById(fieldId + 'Error');
-    const input = document.getElementById(fieldId);
-    if (el) el.textContent = '';
-    if (input) input.style.borderColor = '';
+  function showErr(id, msg) {
+    const el = document.getElementById(id + 'Error');
+    const inp = document.getElementById(id);
+    if (el)  el.textContent = msg;
+    if (inp) inp.style.borderColor = 'rgba(239,68,68,0.6)';
+  }
+  function clearErr(id) {
+    const el = document.getElementById(id + 'Error');
+    const inp = document.getElementById(id);
+    if (el)  el.textContent = '';
+    if (inp) inp.style.borderColor = '';
   }
 
   function validate() {
-    let valid = true;
+    let ok = true;
+    const ids = ['apply-name', 'apply-phone', 'apply-email', 'apply-education', 'apply-course'];
+    ids.forEach(id => clearErr(id));
 
-    const name  = document.getElementById('name');
-    const phone = document.getElementById('phone');
-    const email = document.getElementById('email');
-
-    clearError('name');
-    clearError('phone');
-    clearError('email');
-
-    if (!name.value.trim() || name.value.trim().length < 2) {
-      showError('name', 'Please enter your full name.');
-      valid = false;
-    }
-
-    const phonePattern = /^[+]?[\d\s\-()]{7,15}$/;
-    if (!phone.value.trim() || !phonePattern.test(phone.value.trim())) {
-      showError('phone', 'Please enter a valid phone number.');
-      valid = false;
-    }
-
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.value.trim() || !emailPattern.test(email.value.trim())) {
-      showError('email', 'Please enter a valid email address.');
-      valid = false;
-    }
-
-    return valid;
+    if (document.getElementById('apply-name').value.trim().length < 2)
+      { showErr('apply-name', 'Please enter your full name.'); ok = false; }
+    if (!phoneRe.test(document.getElementById('apply-phone').value.trim()))
+      { showErr('apply-phone', 'Please enter a valid phone number.'); ok = false; }
+    if (!emailRe.test(document.getElementById('apply-email').value.trim()))
+      { showErr('apply-email', 'Please enter a valid email address.'); ok = false; }
+    if (!document.getElementById('apply-education').value)
+      { showErr('apply-education', 'Please select your education level.'); ok = false; }
+    if (!document.getElementById('apply-course').value)
+      { showErr('apply-course', 'Please select a course.'); ok = false; }
+    return ok;
   }
 
-  // Real-time validation clearing
-  ['name', 'phone', 'email'].forEach(id => {
-    const input = document.getElementById(id);
-    if (input) {
-      input.addEventListener('input', () => clearError(id));
-    }
+  ['apply-name', 'apply-phone', 'apply-email', 'apply-education', 'apply-course'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', () => clearErr(id));
   });
-
-  // ── GOOGLE SHEETS INTEGRATION ──────────────────────────────
-  // 1. Open https://script.google.com and create a new project.
-  // 2. Paste the Apps Script code from js/sheets-script.gs into the editor.
-  // 3. Click Deploy → New deployment → Web app.
-  //    Set "Execute as" = Me, "Who has access" = Anyone. Deploy and copy the URL.
-  // 4. Replace the placeholder below with your deployed Web App URL.
-  const SHEETS_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     if (!validate()) return;
 
-    const btnText    = submitBtn.querySelector('.btn-text');
-    const btnLoading = submitBtn.querySelector('.btn-loading');
+    setSubmitting(submitBtn, true);
 
-    btnText.style.display    = 'none';
-    btnLoading.style.display = 'inline-flex';
-    submitBtn.disabled = true;
-
-    const payload = {
+    await postToSheets({
+      type:      'apply',
       timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-      name:      document.getElementById('name').value.trim(),
-      phone:     document.getElementById('phone').value.trim(),
-      email:     document.getElementById('email').value.trim(),
-      course:    document.getElementById('course').value || '—',
-      budget:    document.getElementById('budget').value || '—',
-      message:   document.getElementById('message').value.trim() || '—'
-    };
+      name:      document.getElementById('apply-name').value.trim(),
+      phone:     document.getElementById('apply-phone').value.trim(),
+      email:     document.getElementById('apply-email').value.trim(),
+      dob:       document.getElementById('apply-dob').value      || '—',
+      education: document.getElementById('apply-education').value || '—',
+      marks:     document.getElementById('apply-marks').value.trim() || '—',
+      course:    document.getElementById('apply-course').value   || '—',
+      location:  document.getElementById('apply-location').value || '—',
+      budget:    document.getElementById('apply-budget').value   || '—',
+      hostel:    document.getElementById('apply-hostel').value   || '—',
+      message:   document.getElementById('apply-message').value.trim() || '—'
+    });
 
-    try {
-      // no-cors is required for Apps Script Web Apps called from a browser
-      await fetch(SHEETS_URL, {
-        method:  'POST',
-        mode:    'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(payload)
-      });
-    } catch (_) {
-      // Network errors are silent — the success message still shows
+    setSubmitting(submitBtn, false);
+    form.reset();
+    showFormSuccess(successEl);
+  });
+})();
+
+/* ── SCHOLARSHIP FORM ─────────────────────────────────────── */
+(function initScholarshipForm() {
+  const form      = document.getElementById('scholarshipForm');
+  const submitBtn = document.getElementById('schSubmitBtn');
+  const successEl = document.getElementById('schFormSuccess');
+  if (!form) return;
+
+  const phoneRe = /^[+]?[\d\s\-()]{7,15}$/;
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+
+  function showErr(id, msg) {
+    const el  = document.getElementById(id + 'Error');
+    const inp = document.getElementById(id);
+    if (el)  el.textContent = msg;
+    if (inp) inp.style.borderColor = 'rgba(239,68,68,0.6)';
+  }
+  function clearErr(id) {
+    const el  = document.getElementById(id + 'Error');
+    const inp = document.getElementById(id);
+    if (el)  el.textContent = '';
+    if (inp) inp.style.borderColor = '';
+  }
+
+  function validate() {
+    let ok = true;
+    const ids = ['sch-name', 'sch-phone', 'sch-email', 'sch-education', 'sch-marks', 'sch-course'];
+    ids.forEach(id => clearErr(id));
+
+    if (document.getElementById('sch-name').value.trim().length < 2)
+      { showErr('sch-name', 'Please enter your full name.'); ok = false; }
+    if (!phoneRe.test(document.getElementById('sch-phone').value.trim()))
+      { showErr('sch-phone', 'Please enter a valid phone number.'); ok = false; }
+    if (!emailRe.test(document.getElementById('sch-email').value.trim()))
+      { showErr('sch-email', 'Please enter a valid email address.'); ok = false; }
+    if (!document.getElementById('sch-education').value)
+      { showErr('sch-education', 'Please select your education level.'); ok = false; }
+    if (!document.getElementById('sch-marks').value.trim())
+      { showErr('sch-marks', 'Please enter your percentage or CGPA.'); ok = false; }
+    if (!document.getElementById('sch-course').value)
+      { showErr('sch-course', 'Please select a course.'); ok = false; }
+
+    // File size validation
+    const sslcFile    = document.getElementById('sch-sslc').files[0];
+    const plusTwoFile = document.getElementById('sch-plustwo').files[0];
+    if (sslcFile    && sslcFile.size    > MAX_FILE_SIZE)
+      { showErr('sch-sslc',    'SSLC file must be under 10 MB.');     ok = false; }
+    if (plusTwoFile && plusTwoFile.size > MAX_FILE_SIZE)
+      { showErr('sch-plustwo', 'Plus Two file must be under 10 MB.'); ok = false; }
+
+    return ok;
+  }
+
+  ['sch-name', 'sch-phone', 'sch-email', 'sch-education', 'sch-marks', 'sch-course'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', () => clearErr(id));
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    setSubmitting(submitBtn, true);
+
+    // Read uploaded files as base64 for Google Drive upload via Apps Script
+    const sslcInput    = document.getElementById('sch-sslc');
+    const plusTwoInput = document.getElementById('sch-plustwo');
+    let sslcBase64 = null, sslcName = null, plusTwoBase64 = null, plusTwoName = null;
+
+    if (sslcInput.files[0]) {
+      sslcBase64 = await readFileAsBase64(sslcInput.files[0]);
+      sslcName   = sslcInput.files[0].name;
+    }
+    if (plusTwoInput.files[0]) {
+      plusTwoBase64 = await readFileAsBase64(plusTwoInput.files[0]);
+      plusTwoName   = plusTwoInput.files[0].name;
     }
 
-    btnText.style.display    = 'inline-flex';
-    btnLoading.style.display = 'none';
-    submitBtn.disabled = false;
-    form.reset();
-    success.style.display        = 'flex';
-    success.style.alignItems     = 'center';
-    success.style.justifyContent = 'center';
-    success.style.gap            = '8px';
+    await postToSheets({
+      type:        'scholarship',
+      timestamp:   new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+      name:        document.getElementById('sch-name').value.trim(),
+      phone:       document.getElementById('sch-phone').value.trim(),
+      email:       document.getElementById('sch-email').value.trim(),
+      dob:         document.getElementById('sch-dob').value       || '—',
+      education:   document.getElementById('sch-education').value || '—',
+      marks:       document.getElementById('sch-marks').value.trim() || '—',
+      course:      document.getElementById('sch-course').value    || '—',
+      state:       document.getElementById('sch-state').value     || '—',
+      address:     document.getElementById('sch-address').value.trim() || '—',
+      message:     document.getElementById('sch-message').value.trim() || '—',
+      sslcFile:    sslcBase64,
+      sslcName:    sslcName,
+      plusTwoFile: plusTwoBase64,
+      plusTwoName: plusTwoName
+    });
 
-    setTimeout(() => { success.style.display = 'none'; }, 5000);
+    setSubmitting(submitBtn, false);
+    form.reset();
+    document.getElementById('sslcFileName').textContent    = '';
+    document.getElementById('plusTwoFileName').textContent = '';
+    showFormSuccess(successEl);
   });
 })();
 
@@ -436,13 +537,23 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 /* ── FILE UPLOAD ZONES ────────────────────────────────────── */
 (function initFileUploads() {
   document.querySelectorAll('.file-upload-zone').forEach(zone => {
-    const input = zone.querySelector('.file-upload-input');
+    const input  = zone.querySelector('.file-upload-input');
     const nameEl = zone.querySelector('.file-upload-name');
 
+    // Show filename and reset border on file selection
     input.addEventListener('change', () => {
-      if (input.files.length) nameEl.textContent = input.files[0].name;
+      if (input.files.length) {
+        nameEl.textContent = input.files[0].name;
+        zone.style.borderColor = '';
+      }
     });
 
+    // Click anywhere on the zone (except the input itself) to open file picker
+    zone.addEventListener('click', (e) => {
+      if (e.target !== input) input.click();
+    });
+
+    // Drag-and-drop support
     zone.addEventListener('dragover', e => {
       e.preventDefault();
       zone.classList.add('drag-over');
@@ -460,3 +571,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
   });
 })();
+
+/* ── COURSES ACCORDION ────────────────────────────────────── */
+(function initAccordion() {
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const body = header.nextElementSibling;
+      const isOpen = header.classList.contains('active');
+
+      // Close all others
+      document.querySelectorAll('.accordion-header').forEach(h => {
+        h.classList.remove('active');
+        const b = h.nextElementSibling;
+        if (b) b.classList.remove('open');
+      });
+
+      // Toggle clicked
+      if (!isOpen) {
+        header.classList.add('active');
+        body.classList.add('open');
+      }
+    });
+  });
+})();
+
